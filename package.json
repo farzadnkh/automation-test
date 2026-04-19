@@ -1,0 +1,20 @@
+{
+  "name": "780-automation-test",
+  "version": "1.0.0",
+  "description": "Complete flight booking automation test for 780.ir stage environment using Page Object Model (POM)",
+  "main": "tests/flight-booking.spec.js",
+  "scripts": {
+    "test": "npx playwright test tests/flight-booking.spec.js",
+    "test:headed": "npx playwright test tests/flight-booking.spec.js --headed",
+    "test:debug": "npx playwright test tests/flight-booking.spec.js --debug",
+    "test:chromium": "npx playwright test tests/flight-booking.spec.js --project=chromium",
+    "test:chromium:headed": "npx playwright test tests/flight-booking.spec.js --project=chromium --headed",
+    "test:all": "npx playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  },
+  "keywords": ["automation", "testing", "780.ir", "flight", "booking", "e2e", "pom", "page-object-model"],
+  "author": "Farzad Nikraftar",
+  "license": "MIT"
+}
