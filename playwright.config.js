@@ -1,4 +1,4 @@
-const { defineConfig, devices } = require("@playwright/test");
+﻿const { defineConfig, devices } = require("@playwright/test");
 
 module.exports = defineConfig({
   testDir: "./tests",
@@ -8,7 +8,8 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: "html",
   use: {
-    baseURL: "https://stage-web.780.ir",
+    // Keep URL configurable to avoid hardcoded environment coupling.
+    baseURL: process.env.BASE_URL || "https://stage-web.example.com",
     trace: "on-first-retry",
     screenshot: "only-on-failure",
     video: "retain-on-failure",

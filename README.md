@@ -1,27 +1,46 @@
 ﻿# Flight Booking E2E Automation (Playwright)
 
-Playwright-based end-to-end automation project for a flight-booking flow. The suite is structured with Page Object Model (POM) and reusable test utilities to support maintainable regression testing.
+![QA Focus](https://img.shields.io/badge/QA-E2E%20Automation-1f6feb)
+![Playwright](https://img.shields.io/badge/Framework-Playwright-2EAD33)
+![Language](https://img.shields.io/badge/Language-JavaScript-F7DF1E)
+![Security](https://img.shields.io/badge/Secrets-Sanitized-success)
 
-## QA Focus
+Production-style end-to-end automation for flight-booking workflows using Page Object Model (POM), reusable helpers, and CI-friendly execution.
 
-- End-to-end critical booking path validation
-- Stable selector strategy and reusable page models
-- Error handling for unstable UI states (timeouts, retries, interruption modals)
-- CI-friendly execution
+## Why This Looks Senior
 
-## Tech Stack
+- Business-critical flow coverage (auth, search, booking, checkout, payment transition)
+- Stable design with maintainable POM boundaries
+- Explicit handling for flaky/real-world UI states
+- Security-conscious setup with environment-driven test data (no hardcoded credentials)
 
-- Playwright
-- JavaScript / Node.js
-- Page Object Model (POM)
+## Architecture
+
+```mermaid
+flowchart TD
+  T[Test Specs] --> P[Page Objects]
+  P --> C[Test Config]
+  P --> U[Shared Utilities]
+  C --> E[Environment Variables]
+  T --> R[Reports & Artifacts]
+```
+
+## Test Strategy
+
+- **Smoke:** Core booking path health check per deployment.
+- **Regression:** Multi-step happy/negative journeys for stable release confidence.
+- **Resilience:** Timeout modal, no-flight, and interruption handling.
+- **Data strategy:** Placeholder-safe defaults + env overrides for CI/stage.
+- **Release gate:** Run in CI with HTML report and failure artifacts.
 
 ## Project Structure
 
 ```text
 automation-test/
-├── config/                 # Test configuration and environment placeholders
-├── pages/                  # POM classes per page/feature
-├── tests/                  # End-to-end scenarios
+├── config/
+├── pages/
+├── tests/
+├── .env.example
 ├── playwright.config.js
 └── package.json
 ```
@@ -31,6 +50,7 @@ automation-test/
 ```bash
 npm install
 npx playwright install
+cp .env.example .env
 ```
 
 ## Run
@@ -41,10 +61,8 @@ npm run test:headed
 npm run test:debug
 ```
 
-## Security Note
+## Security Notes
 
-This repository intentionally avoids real credentials and production-sensitive test data. Use local environment variables or private CI variables for secrets.
-
-## CI/CD
-
-Can be executed in GitHub Actions or GitLab CI as part of release-gate regression checks.
+- No real credentials, OTPs, or discount codes are committed.
+- Use `.env` locally and CI secret variables in pipelines.
+- Keep stage/production secrets outside source control.

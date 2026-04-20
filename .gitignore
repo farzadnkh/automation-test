@@ -1,0 +1,21 @@
+﻿# Environment
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Playwright artifacts
+playwright-report/
+test-results/
+screenshots/
+
+# Logs
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
